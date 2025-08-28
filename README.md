@@ -1,2 +1,2 @@
 # pauburk.github.io
-GitHub Pages site for CS 180 portfolio
+CS 180 portfolio
