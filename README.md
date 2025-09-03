@@ -1,1 +1,2 @@
-# CS180
+# pauburk.github.io
+CS 180 portfolio
