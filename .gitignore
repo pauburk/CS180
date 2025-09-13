@@ -1,1 +1,5 @@
 .DS_Store
+.ipynb_checkpoints/
+1/data/
+1/data.zip
+1/out/

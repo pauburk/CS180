@@ -4,6 +4,18 @@
     <title>Paul Burke | CS180 Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+    .image-row {
+        display: flex;
+        gap: 4px;
+    }
+
+    .image-row img {
+        width: 50%;
+        /* height: auto; */
+        object-fit: cover;
+    }
+</style>
 <body>
 
     <div class="topnav" style="position: fixed; width: 100%; text-align: center;">
@@ -19,25 +31,29 @@
     <div class="page">
 
         <div class="text">
-            <h1>PROJECT ZERO!</h1>
+            <h1>PROJECT ZERO</h1>
             <h1>Part 1.</h1>
             <p>Take a picture of your friend (or yourself) from close up. You get a typical distorted selfie image. Now step back several feet from your subject, zoom in, and take a second picture. Try to get the face in the second photo to be the same size as in the first photo. If you've done things right, the second portrait should look much better than the first one.</p>
         </div>
 
-        <img src="0/1-1x.JPG" style="width: 500px; max-width: 100%;">
-        <img src="0/1-2x.JPG" style="width: 500px; max-width: 100%;">
+        <div class="image-row">
+            <img src="0/1-1x.JPG" style="width: 49%; max-width: 100%;">
+            <img src="0/1-2x.JPG" style="width: 49%; max-width: 100%;">
+        </div>
 
         <div class="text">
             <h1>Part 2.</h1>
             <p>Let's repeat the same procedure in reverse, for an urban scene. Pick a nice view down a long street (or a walking path on campus), zoom in, and take a photo. Now, walk down the street in the direction of your first shot, and take a second photo without zoom, such that the scene in the two photos appears approximately the same size. The first picture should look flattened, or compressed, compared to the second.</p>
         </div>
 
-        <img src="0/2-in.png" style="width: 500px; max-width: 100%;">
-        <img src="0/2-out.png" style="width: 500px; max-width: 100%;">
+        <div class="image-row">
+            <img src="0/2-in.png" style="width: 500px; max-width: 100%;">
+            <img src="0/2-out.png" style="width: 500px; max-width: 100%;">
+        </div>
 
         <div class="text">
             <h1>Part 3.</h1>
-            <p>In this part, we will be duplicating a classic film effect called the dolly zoom. The idea is to simultaneously move the camera back while also zooming in. First, come up with a good setting for the shot (e.g., a scene with stuffed animals is one popular choice). Now take a few (4-8 or even more!) still photos while you move the camera back and zoom in, keeping the resulting image roughly the same size. Combine your stills into an animated GIF file—you have a dolly zoom!</p>
+            <p>In this part, we will be duplicating a classic film effect called the dolly zoom. The idea is to simultaneously move the camera back while also zooming in. First, come up with a good setting for the shot (e.g., a scene with stuffed animals is one popular choice). Now take a few (4-8 or even more!) still photos while you move the camera back and zoom in, keeping the resulting image roughly the same size. Combine your stills into an animated GIF file&mdash;you have a dolly zoom!</p>
         </div>
 
         <img src="0/3-dolly.gif" style="width: 1000px; max-width: 100%">

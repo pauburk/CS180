@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paul Burke | CS180 Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .image-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .image-row img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+</style>
+<body>
+
+    <div class="topnav" style="position: fixed; width: 100%; text-align: center;">
+        <ul class="main">
+            <li><a href="index.html">CS 180 PORTFOLIO</a></li>
+            <li><a href="https://paulburkephotography.com"><span style="color:rgb(128, 128, 128);"><span style="vertical-align: -0.18em;">&#x21AA;</span> Check out my</span> PHOTOGRAPHY</a></li>
+        </ul>
+        <!-- <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png"></a> -->
+        <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png" style="margin-right: 24px;"></a>
+        <a href="https://linkedin.com/in/paulwburke/" target="_blank"><img src="img/social-li-bw.png"></a>
+    </div>
+
+    <div class="page">
+
+        <div class="text">
+            <h1>PROJECT ONE</h1>
+            <p>Sergei Prokudin-Gorskii, a pioneer of early color photography, captured thousands of scenes across the Russian Empire in the early 1900s by recording three separate exposures of each scene through red, green, and blue filters. Alas, he was limited by the technology of his time in displaying his photographs in color. Now, his glass plate negatives have been digitized by the Library of Congress, making them available for restoration. The goal of this project is to take those digitized glass plate scans, separate them into their three color channels, and then automatically align and combine them into a single RGB image.</p>
+            <p>Below are my RGB reconstructions. I aligned each image using a combination of an image pyramid and brute force displacement window, scoring with the Euclidean Distance: <span style="font-family: monospace">sqrt(sum(sum((img1-img2)^2)))</span>. I aligned the plates using the edges in each image calculated with the <span style="font-family: monospace">sci-kit</span> sobel edge filter.</p>
+            <p>You can view my full jupyter notebook here: <a href="https://github.com/pauburk/CS180/tree/main/1/1.ipynb" target="_blank">https://github.com/pauburk/CS180/tree/main/1/1.ipynb</a>. The original .tif files are omitted from the repository as they are too large. You can view them here instead: <a href="https://drive.google.com/drive/folders/1b3CUGd8j3kIabL47yY8BZCVc-0Dff8pY?usp=sharing" target="_blank">https://drive.google.com/drive/folders/1b3CUGd8j3kIabL47yY8BZCVc-0Dff8pY?usp=sharing</a>.</p>
+        </div>
+
+        <div class="text mono"><p>emir</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/emir.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/emir.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>cathedral</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/cathedral.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/cathedral.jpg" style="flex: 1;"></div>
+        </div>
+
+        <div class="text mono"><p>church</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/church.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/church.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>harvesters</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/harvesters.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/harvesters.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>icon</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/icon.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/icon.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>italil</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/italil.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/italil.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>lastochikino</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/lastochikino.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/lastochikino.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>lugano</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/lugano.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/lugano.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>melons</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/melons.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/melons.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>monastery</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/monastery.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/monastery.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>self_portrait</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/self_portrait.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/self_portrait.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>siren</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/siren.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/siren.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>three_generations</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/three_generations.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/three_generations.jpg"></div>
+        </div>
+
+        <div class="text mono"><p>tobolsk</p></div>
+        <div class="image-row">
+            <img src="1/data-jpgs/tobolsk.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/tobolsk.jpg"></div>
+        </div>
+
+        <div class="text"></div>
+
+    </div>
+
+</body>
+</html>

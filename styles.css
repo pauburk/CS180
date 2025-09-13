@@ -24,12 +24,13 @@ a {
 }
 
 .page {
-    width: 80%;
+    max-width: 1000px;
     margin: auto;
 }
 
 .text {
-    width: 75%;
+    /* width: 75%; */
+    text-align: center;
     margin: 6em 0 0 0;
     font-family: "Athelas";
 }
@@ -40,6 +41,14 @@ a {
 
 .text p {
     font-size: 1.4em;
+}
+
+.text a {
+    font-family: monospace;
+}
+
+.mono {
+    font-family: monospace;
 }
 
 @media screen and (max-width: 1347px) {
@@ -127,74 +136,25 @@ NAVBAR
 
 
 /* =============================================================================
-HOMEPAGE - SLIDESHOW
-============================================================================= */
-
-
-.slideshow {
-    overflow-x: scroll;
-    white-space: nowrap;
-    -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
-    scrollbar-width: none;  /* hide scrollbar for Firefox */
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-}
-
-.slideshow > img {
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-}
-
-.slideshow::-webkit-scrollbar {
-    display: none; /* hide scrollbar for Chrome and Safari */
-}
-
-.slide {
-    height: 650px;
-}
-
-.slide:hover:not(.active) {
-    cursor: pointer;
-}
-
-@media screen and (max-width: 1300px) {
-    .slide {
-        height: 500px;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .slide {
-        height: 350px;
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .slide {
-        height: 250px;
-    }
-}
-
-
-/* =============================================================================
 HOMEPAGE - GALLERY
 ============================================================================= */
+
 
 .gallery {
     display: flex;
     flex-direction: column;
-    width: 60vw;
+    width: 100%;
     margin: auto;
-    gap: 24px;
+    gap: 48px;
     font-family: "Athelas";
 }
 
 .row {
-    width: 90%;
+    /* width: 90%; */
     margin: 0 auto;
     display: flex;
     align-items: stretch;
-    gap: 24px;
+    gap: 12px;
 }
 
 .row.reverse {
