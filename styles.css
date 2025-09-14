@@ -20,7 +20,6 @@ html, body {
 a {
     color: black;
     text-decoration: none;
-    /* text-decoration-color: rgb(180, 180, 180); */
 }
 
 .page {
@@ -29,21 +28,34 @@ a {
 }
 
 .text {
-    /* width: 75%; */
-    text-align: center;
     margin: 6em 0 0 0;
     font-family: "Athelas";
 }
 
 .text h1 {
+    text-align: center;
     font-weight: 1;
 }
 
 .text p {
     font-size: 1.4em;
+    text-align: justify;
+    text-align-last: center;
 }
 
 .text a {
+    color: rgb(120, 120, 120);
+    font-family: monospace;
+}
+
+.text img {
+    width: 100%;
+}
+
+.caption {
+    margin-top: 0;
+    font-size: 1.4em;
+    text-align: center;
     font-family: monospace;
 }
 
@@ -59,10 +71,7 @@ a {
 
 @media screen and (max-width: 950px) {
     .text {
-        width: 90%;
         margin: 5em auto 0 auto;
-        /* margin: 47.5px 0 0 5%; */
-        text-align: center;
     }
     .text h1 {
         font-size: 1.8em;
@@ -200,4 +209,27 @@ HOMEPAGE - GALLERY
 .gallery .desc-box p {
     font-size: 1.4em;
     color: rgb(100, 100, 100);
+}
+
+
+/* =============================================================================
+PRINTING
+============================================================================= */
+
+
+@media print {
+    html, body {
+        height: auto;
+        overflow: visible !important;
+    }
+    .topnav {
+        position: static !important;
+    }
+    .page {
+        max-width: none;
+        width: 100%;
+    }
+    .text, .mono, .image-row, .caption {
+        page-break-inside: avoid;
+    }
 }

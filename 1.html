@@ -33,94 +33,138 @@
 
         <div class="text">
             <h1>PROJECT ONE</h1>
+            <h1>Overview</h1>
             <p>Sergei Prokudin-Gorskii, a pioneer of early color photography, captured thousands of scenes across the Russian Empire in the early 1900s by recording three separate exposures of each scene through red, green, and blue filters. Alas, he was limited by the technology of his time in displaying his photographs in color. Now, his glass plate negatives have been digitized by the Library of Congress, making them available for restoration. The goal of this project is to take those digitized glass plate scans, separate them into their three color channels, and then automatically align and combine them into a single RGB image.</p>
-            <p>Below are my RGB reconstructions. I aligned each image using a combination of an image pyramid and brute force displacement window, scoring with the Euclidean Distance: <span style="font-family: monospace">sqrt(sum(sum((img1-img2)^2)))</span>. I aligned the plates using the edges in each image calculated with the <span style="font-family: monospace">sci-kit</span> sobel edge filter.</p>
+            <p>Below is a sample of my RGB reconstructions. I aligned each image using a combination image pyramid and brute force displacement window, scoring with Euclidean Distance. I aligned each channel using the edges calculated with the <span style="font-family: monospace">sci-kit</span> sobel edge filter.</p>
             <p>You can view my full jupyter notebook here: <a href="https://github.com/pauburk/CS180/tree/main/1/1.ipynb" target="_blank">https://github.com/pauburk/CS180/tree/main/1/1.ipynb</a>. The original .tif files are omitted from the repository as they are too large. You can view them here instead: <a href="https://drive.google.com/drive/folders/1b3CUGd8j3kIabL47yY8BZCVc-0Dff8pY?usp=sharing" target="_blank">https://drive.google.com/drive/folders/1b3CUGd8j3kIabL47yY8BZCVc-0Dff8pY?usp=sharing</a>.</p>
         </div>
 
-        <div class="text mono"><p>emir</p></div>
+        <div class="text">
+            <h1>Approach</h1>
+            <p>After importing the data, I seperated each image into three color channels by dividing the height by three and taking each section.</p>
+            <img src="1/diagram.jpg">
+            <p>Then, I aligned the green and red channels to the blue channel, and stacked the images (red on top of blue on top of green). To align the images, I used a combination of brute force with an image pyramid. Brute force checked every displacement value within a range of <span style="font-family: monospace">(-30, 30)</span> pixels in the <span style="font-family: monospace">x</span> and <span style="font-family: monospace">y</span> directions, and calculated the best displacement by scoring each shift using the Euclidean Distance formula: <span style="font-family: monospace">sqrt(sum((img1-img2)^2))</span>. When calculating the best displacement, I first applied the <span style="font-family: monospace">sci-kit</span> Sobel edge filter so that the alignment was guided by image edges rather than raw pixel intensities. The image pyramid recursively downscaled the images by <span style="font-family: monospace">1/2</span> until the dimensions were <span style="font-family: monospace">&lt;400px</span>, upon when brute force would be executed on the small image. Then, the image was recursively upscaled by <span style="font-family: monospace">1/2</span> and during each iteration the displacement was refined within a range of <span style="font-family: monospace">(-10, 10)</span> pixels. When the images reached original scale they would be aligned.</p>
+            <p>I kept the borders in the final images to demonstrate the displacement.</p>
+        </div>
+
+        <div class="text">
+            <h1>Given Examples</h1>
+        </div>
+
         <div class="image-row">
             <img src="1/data-jpgs/emir.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/emir.jpg"></div>
         </div>
+        <p class="caption">emir - G shift (dy, dx): (49, 24) - R shift (dy, dx): (107, 40)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>cathedral</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/cathedral.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/cathedral.jpg" style="flex: 1;"></div>
         </div>
+        <p class="caption">cathedral - G shift (dy, dx): (5, 2) - R shift (dy, dx): (12, 3)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>church</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/church.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/church.jpg"></div>
         </div>
+        <p class="caption">church - G shift (dy, dx): (25, 4) - R shift (dy, dx): (58, -4)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>harvesters</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/harvesters.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/harvesters.jpg"></div>
         </div>
+        <p class="caption">harvesters - G shift (dy, dx): (60, 18) - R shift (dy, dx): (123, 14)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>icon</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/icon.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/icon.jpg"></div>
         </div>
+        <p class="caption">icon - G shift (dy, dx): (41, 17) - R shift (dy, dx): (90, 23)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>italil</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/italil.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/italil.jpg"></div>
         </div>
+        <p class="caption">italil - G shift (dy, dx): (38, 22) - R shift (dy, dx): (77, 36)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>lastochikino</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/lastochikino.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/lastochikino.jpg"></div>
         </div>
+        <p class="caption">lastochikino - G shift (dy, dx): (-3, -1) - R shift (dy, dx): (76, -8)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>lugano</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/lugano.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/lugano.jpg"></div>
         </div>
+        <p class="caption">lugano - G shift (dy, dx): (41, -17) - R shift (dy, dx): (92, -29)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>melons</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/melons.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/melons.jpg"></div>
         </div>
+        <p class="caption">melons - G shift (dy, dx): (80, 10) - R shift (dy, dx): (177, 14)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>monastery</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/monastery.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/monastery.jpg"></div>
         </div>
-
-        <div class="text mono"><p>self_portrait</p></div>
+        <p class="caption">monastery - G shift (dy, dx): (-3, 2) - R shift (dy, dx): (3, 2)</p>
+        <div class="text"></div>
+        
         <div class="image-row">
             <img src="1/data-jpgs/self_portrait.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/self_portrait.jpg"></div>
         </div>
+        <p class="caption">self_portrait - G shift (dy, dx): (78, 29) - R shift (dy, dx): (176, 37)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>siren</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/siren.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/siren.jpg"></div>
         </div>
+        <p class="caption">siren - G shift (dy, dx): (49, -6) - R shift (dy, dx): (96, -24)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>three_generations</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/three_generations.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/three_generations.jpg"></div>
         </div>
+        <p class="caption">three_generations - G shift (dy, dx): (53, 13) - R shift (dy, dx): (111, 9)</p>
+        <div class="text"></div>
 
-        <div class="text mono"><p>tobolsk</p></div>
         <div class="image-row">
             <img src="1/data-jpgs/tobolsk.jpg" style="width: 25.3%;">
             <div><img src="1/out-jpgs/tobolsk.jpg"></div>
         </div>
+        <p class="caption">tobolsk - G shift (dy, dx): (3, 3) - R shift (dy, dx): (7, 3)</p>
+
+        <div class="text">
+            <h1>Custom Examples</h1>
+            <p>Below are two images I reconstructed from the <a href="https://www.loc.gov/collections/prokudin-gorskii/?st=grid" target="_blank">Prokudin-Gorskii collection</a>.</p>
+        </div>
+
+        <div class="image-row">
+            <img src="1/custom-jpgs/zakat na morie.jpg" style="width: 25.3%;">
+            <div><img src="1/out-custom-jpgs/zakat na morie.jpg"></div>
+        </div>
+        <p class="caption">zakat na morie - G shift (dy, dx): (64, 368) - R shift (dy, dx): (120, -12)</p>
+        <div class="text"></div>
+
+        <div class="image-row">
+            <img src="1/custom-jpgs/ekaterinburg.jpg" style="width: 25.3%;">
+            <div><img src="1/out-custom-jpgs/ekaterinburg.jpg" style="flex: 1;"></div>
+        </div>
+        <p class="caption">ekaterinburg - G shift (dy, dx): (49, 16) - R shift (dy, dx): (115, 20)</p>
 
         <div class="text"></div>
 
