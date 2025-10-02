@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paul Burke | CS180 Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .image-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .image-row img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+</style>
+<body>
+
+    <div class="topnav" style="position: fixed; width: 100%; text-align: center;">
+        <ul class="main">
+            <li><a href="index.html">CS 180 PORTFOLIO</a></li>
+            <li><a href="https://paulburkephotography.com"><span style="color:rgb(128, 128, 128);"><span style="vertical-align: -0.18em;">&#x21AA;</span> Check out my</span> PHOTOGRAPHY</a></li>
+        </ul>
+        <!-- <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png"></a> -->
+        <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png" style="margin-right: 24px;"></a>
+        <a href="https://linkedin.com/in/paulwburke/" target="_blank"><img src="img/social-li-bw.png"></a>
+    </div>
+
+    <div class="page">
+
+        <div class="text">
+            <h1>PROJECT TWO</h1>
+            <h1>Part 1.1</h1>
+            <p>Below is my implementation of convolution using <span style="font-family: monospace">numpy</span>:</p>
+            <img src="2/out/1.1-1.png">
+            <p>Below you can visually see a comparison between <span style="font-family: monospace">numpy</span> with 4 for loops, <span style="font-family: monospace">numpy</span> with 2 for loops, and the <span style="font-family: monospace">scipy.signal.convolve2d</span> function: </p>
+            <img src="2/out/1.1-2.png">
+            <img src="2/out/1.1-3.png">
+            <img src="2/out/1.1-4.png">
+            <p>The <span style="font-family: monospace">numpy</span> 4 for loop runtime was longer than the <span style="font-family: monospace">numpy</span> 2 loop and <span style="font-family: monospace">scipy</span> functions. My <span style="font-family: monospace">numpy</span> implementations use zero-padding whereas the <span style="font-family: monospace">scipy.signal.convolve2d</span> function has different options such as fill, wrap, or symmetrical.</p>
+        </div>
+
+        <div class="text">
+            <h1>Part 1.2</h1>
+            <img src="2/out/1.2-1.png">
+            <img src="2/out/1.2-2.png">
+        </div>
+
+        <div class="text">
+            <h1>Part 1.3</h1>
+            <img src="2/out/1.3-1.png">
+            <img src="2/out/1.3-2.png">
+        </div>
+
+        <div class="text">
+            <h1>Part 1.3</h1>
+            <p>An unsharp mask boosts the image's high frequencies by subtracting a blurred version of the image from the original to isolate the high frequencies. To sharpen, we just add the original image and the high frequency image together.</p>
+            <img src="2/out/2.1-1.png">
+            <img src="2/out/2.1-2.png">
+            <img src="2/out/2.1-3.png">
+            <img src="2/out/2.1-4.png">
+            <p>Below see the results of different sharpening amounts (multiplying the high frequncies by a scalar):</p>
+            <img src="2/out/2.1-5.png">
+        </div>
+
+        <div class="text">
+            <h1>Part 2.1</h1>
+            <img src="2/out/2.2-1.png">
+            <img src="2/out/2.2-2.png">
+        </div>
+
+        <div class="text">
+            <h1>Parts 2.3 and 2.4</h1>
+            <img src="2/out/apple+orange@depth0.png">
+            <img src="2/out/apple+orange@depth1.png">
+            <img src="2/out/apple+orange@depth2.png">
+            <img src="2/out/apple+orange@depth3.png">
+            <img src="2/out/apple+orange@depth4.png">
+            <img src="2/out/2.3-1.png">
+            <img src="2/out/earth+moon@depth0.png">
+            <img src="2/out/earth+moon@depth1.png">
+            <img src="2/out/earth+moon@depth2.png">
+            <img src="2/out/earth+moon@depth3.png">
+            <img src="2/out/earth+moon@depth4.png">
+            <img src="2/out/2.3-2.png">
+        </div>
+
+        
+
+        <!-- <div class="image-row">
+            <img src="1/img-jpgs/ekaterinburg.jpg" style="width: 25.3%;">
+            <div><img src="1/out-jpgs/ekaterinburg.jpg" style="flex: 1;"></div>
+        </div>
+        <p class="caption">ekaterinburg - G shift (dy, dx): (49, 16) - R shift (dy, dx): (115, 20)</p> -->
+
+        <div class="text"></div>
+
+    </div>
+
+</body>
+</html>
