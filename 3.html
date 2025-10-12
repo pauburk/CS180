@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paul Burke | CS180 Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .image-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .image-row img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+</style>
+<body>
+
+    <div class="topnav" style="position: fixed; width: 100%; text-align: center;">
+        <ul class="main">
+            <li><a href="index.html">CS 180 PORTFOLIO</a></li>
+            <li><a href="https://paulburkephotography.com"><span style="color:rgb(128, 128, 128);"><span style="vertical-align: -0.18em;">&#x21AA;</span> Check out my</span> PHOTOGRAPHY</a></li>
+        </ul>
+        <!-- <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png"></a> -->
+        <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png" style="margin-right: 24px;"></a>
+        <a href="https://linkedin.com/in/paulwburke/" target="_blank"><img src="img/social-li-bw.png"></a>
+    </div>
+
+    <div class="page">
+
+        <div class="text">
+            <h1>PROJECT THREE</h1>
+            <h1>Part A.1</h1>
+            <p>Below are two sets of images with projective transformations:</p>
+            <img src="3/out/a.1-1.png">
+            <p class="caption">Athens, Greece</p>
+            <img src="3/out/a.1-2.png">
+            <p class="caption">From the top of the Campanile</p>
+        </div>
+
+        <div class="text">
+            <h1>Part A.2</h1>
+            <img src="3/out/a.2-1.png">
+            <p class="caption">[[ 1.23908710e+00  3.70198604e-01 -1.45917469e+02]</p>
+            <p class="caption">[-1.51962921e-01  1.49890322e+00 -5.10552730e+02]</p>
+            <p class="caption">[-1.56443141e-04  7.58403119e-04  1.00000000e+00]]</p>
+            <img src="3/out/a.2-2.png">
+            <p class="caption">[[ 1.24211398e+00  1.77163400e-01 -8.41086661e+01]</p>
+            <p class="caption">[-1.49857910e-01  1.50409374e+00 -6.31019853e+02]</p>
+            <p class="caption">[-1.68089407e-04  5.32701565e-04  1.00000000e+00]]</p>
+            <img src="3/out/a.2-3.png">
+            <p class="caption">[[ 3.53942058e+00  2.75179444e+00 -1.38713074e+03]</p>
+            <p class="caption">[-1.82550780e-01  4.91495389e+00 -1.53011619e+03]</p>
+            <p class="caption">[-1.10431462e-04  5.17446530e-03  1.00000000e+00]]</p>
+        </div>
+
+        <div class="text">
+            <h1>Part A.3</h1>
+            <div class="image-row">
+                <img src="3/out/a.3-1.png">
+                <img src="3/out/a.3-2.png">
+            </div>
+            <p class="caption">Stadium goalpoasts</p>
+            <div class="image-row">
+                <img src="3/out/a.3-3.png">
+                <img src="3/out/a.3-4.png">
+            </div>
+            <p class="caption">Building</p>
+        </div>
+
+        <div class="text">
+            <h1>Part A.4</h1>
+            <p>To create the mosaic, I first estimated the homography between the two images using the correspondence points from Part A2, aligning image 1 to image 2's coordinate frame. Each image was then inverse-warped using bilinear interpolation so that overlapping regions aligned. The warped images were placed together using their offsets in a shared buffer, where zeros indicated empty pixels. To blend, I computed image weight maps using a distance transform so that pixels farther from the image boundary contributed more, and weights were normalized to sum to 1 across all images. I then built Gaussian and Laplacian pyramids for both the images and their weight maps, blending each level with weighted sums. The blended pyramid was collapsed by upsampling and adding levels back together to reconstruct the final mosaic.</p>
+            <img src="3/out/pano_3-2_3.jpg">
+            <img src="3/out/pano_5-1_2.png">
+            <img src="3/out/pano_4-5_6.png">
+        </div>
+
+        <div class="text"></div>
+
+    </div>
+
+</body>
+</html>
