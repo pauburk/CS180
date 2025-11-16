@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paul Burke | CS180 Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .image-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .image-row img {
+        width: 49.5%;
+        height: auto;
+        object-fit: cover;
+    }
+</style>
+<body>
+
+    <div class="topnav" style="position: fixed; width: 100%; text-align: center;">
+        <ul class="main">
+            <li><a href="index.html">CS 180 PORTFOLIO</a></li>
+            <li><a href="https://paulburkephotography.com"><span style="color:rgb(128, 128, 128);"><span style="vertical-align: -0.18em;">&#x21AA;</span> Check out my</span> PHOTOGRAPHY</a></li>
+        </ul>
+        <!-- <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png"></a> -->
+        <a href="https://instagram.com/paulburkephotography/" target="_blank"><img src="img/social-ig-bw.png" style="margin-right: 24px;"></a>
+        <a href="https://linkedin.com/in/paulwburke/" target="_blank"><img src="img/social-li-bw.png"></a>
+    </div>
+
+    <div class="page">
+
+        <div class="text">
+            <h1>PROJECT FOUR</h1>
+            <h1>Part 0.3: Estimating Camera Pose</h1>
+            <p>Below, we visualize the camera poses in Viser as a 3D cloud of frustums, each representing the position and orientation of a training image.</p>
+            <div class="image-row">
+                <img src="4/out/render_0.3-1.jpg" style="border: 1px solid black; border-radius: 1px;">
+                <img src="4/out/render_0.3-2.jpg" style="border: 1px solid black; border-radius: 1px;">
+            </div>
+        </div>
+
+        <div class="text">
+            <h1>Part 1: Fit a Neural Field to a 2D Image</h1>
+            <p>In this part, I implemented a 2D neural field by training an MLP with sinusoidal positional encoding to map normalized pixel coordinates to RGB values.</p>
+            <p><u>Model architecture:</u><br><span style="font-family: monospace">MLP (<br>PosEnc(10)<br>Linear(42 &rarr; 256)<br>Linear(256 &rarr; 256)<br>Linear(256 &rarr; 256)<br>Linear(256 &rarr; 3) + Sigmoid )</span></p>
+            <p><u>Hyperparameters for given image:</u><br><span style="font-family: monospace">Optimizer: Adam<br>Learning rate: 1e-3<br>Width: 256<br>Batch size: 10,000<br>Iterations: 1,000<br>Logging frequency: 200</span></p>
+            <div class="image-row">
+                <img style="width: 19%;" src="4/out/fox_iteration_0.jpg">
+                <img style="width: 19%;" src="4/out/fox_iteration_200.jpg">
+                <img style="width: 19%;" src="4/out/fox_iteration_400.jpg">
+                <img style="width: 19%;" src="4/out/fox_iteration_600.jpg">
+                <img style="width: 19%;" src="4/out/fox_iteration_800.jpg">
+            </div>
+            <p class="caption">Training progression (1,000 iterations)</p>
+            <img src="4/img/fox.jpg" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">Original</p>
+            <div class="image-row">
+                <img src="4/out/fox_iteration_800_2-64.jpg">
+                <img src="4/out/fox_iteration_800_2-256.jpg">
+            </div>
+            <p class="caption">L=2, hidden_dim=64 (left); L=2, hidden_dim=256 (right)</p>
+            <div class="image-row">
+                <img src="4/out/fox_iteration_800_10-64.jpg">
+                <img src="4/out/fox_iteration_800.jpg">
+            </div>
+            <p class="caption">L=10, hidden_dim=64 (left); L=10, hidden_dim=256 (right)</p>
+            <img src="4/out/fox_psnr.png" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">PSNR curve for given image</p>
+            <p><u>Hyperparameters for choice image:</u><br><span style="font-family: monospace">Optimizer: Adam<br>Learning rate: 1e-3<br>Width: 256<br>Batch size: 10,000<br>Iterations: 2,000<br>Logging frequency: 200</span></p>
+            <div class="image-row">
+                <img style="width: 19%;" src="4/out/football_iteration_0.jpg">
+                <img style="width: 19%;" src="4/out/football_iteration_400.jpg">
+                <img style="width: 19%;" src="4/out/football_iteration_800.jpg">
+                <img style="width: 19%;" src="4/out/football_iteration_1200.jpg">
+                <img style="width: 19%;" src="4/out/football_iteration_1800.jpg">
+            </div>
+            <p class="caption">Training progression (2,000 iterations)</p>
+            <div class="image-row">
+                <img src="4/img/football.jpg">
+                <img src="4/out/football_iteration_1800.jpg">
+            </div>
+            <p class="caption">Original (left); L=10, hidden_dim=256 (right)</p>
+            <img src="4/out/football_psnr.png" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">PSNR curve for choice image</p>
+        </div>
+
+        <div class="text">
+            <h1>Part 2: Fit a Neural Radiance Field from Multi-view Images</h1>
+            <p><u>Data and Camera Setup:</u><br>I load the Lego dataset from the provided .npz file and normalize all images to [0,1]. The image resolution (H,W) is extracted from the training set, and I construct the camera intrinsic matrix K using the given focal length and an image-center principal point. The dataset also provides the camera-to-world matrices for train, validation, and test splits, which are used later to generate rays from pixels.</p>
+            <p><u>Part 2.1: Create Rays from Cameras</u><br>In this part I implement the functions needed to convert pixel coordinates into 3D rays. apply_tf applies a full 4×4 camera-to-world transform to 3D points. uv_to_cam back-projects pixel coordinates into the camera frame using the inverse intrinsics matrix. uv_to_ray combines these steps: it maps pixels to camera space, transforms them to world space, extracts the camera origin, and computes normalized ray directions.</p>
+            <p><u>Part 2.2: Sampling</u><br>I implement random ray sampling for training and full-image ray generation for validation. sample_random_rays uniformly samples pixel indices, converts them to ray origins and directions, and returns the corresponding RGB targets. sample_all_rays builds a full grid of all pixel centers and produces rays for the entire image. sample_along_rays takes ray origins/directions and produces evenly spaced 3D sample points between near and far bounds for volume rendering.</p>
+            <p><u>Part 2.3: Putting the Dataloading All Together</u><br>I create a RaysData class to organize all ray-related preprocessing. In the constructor, I convert inputs to tensors, compute a stable CPU inverse of the intrinsics, and move everything to the target device. I precompute all rays using sample_all_rays and store flattened rays, pixel coordinates, and colors for efficient lookup.</p>
+            <p><u>Part 2.4: Neural Radiance Field</u><br>I implement the NeRF architecture with separate positional encoders for 3D positions and viewing directions. The model uses a deep MLP with a skip connection to produce two outputs: density from position features and color from both position and direction features. The direction branch is concatenated with a transformed feature from the position network. All linear layers use Kaiming initialization, and the density head is biased for stable early training.</p>
+            <p><u>Part 2.5: Volume Rendering</u><br>I implement discrete volume rendering by converting densities to alpha values, computing cumulative transmittance, and producing weighted RGB sums along each ray. The forward pass (test3d) samples points, evaluates the NeRF, and applies the renderer. The training loop repeatedly samples random rays, renders predictions, minimizes MSE, logs validation results, and saves checkpoints. Helper functions render full images, evaluate PSNR across checkpoints, and generate a novel-view video using the trained model.</p>
+            
+            <div class="image-row">
+                <img style="width: 50%;" src="4/out/render_2.3-1.png">
+                <img style="width: 50%;" src="4/out/render_2.3-2.png">
+            </div>
+            <div class="image-row">
+                <img style="width: 50%;" src="4/out/render_2.3-3.png">
+                <img style="width: 50%;" src="4/out/render_2.3-4.png">
+            </div>
+            <p class="caption">Cameras, rays, and samples visualized in Viser</p>
+            
+            <div class="image-row">
+                <img style="width: 19%" src="4/out/3d_lego/lego_iteration_0.jpg">
+                <img style="width: 19%" src="4/out/3d_lego/lego_iteration_800.jpg">
+                <img style="width: 19%" src="4/out/3d_lego/lego_iteration_1600.jpg">
+                <img style="width: 19%" src="4/out/3d_lego/lego_iteration_2400.jpg">
+                <img style="width: 19%" src="4/out/3d_lego/lego_iteration_4000.jpg">
+            </div>
+            <p class="caption">Training progression (4,000) iterations</p>
+
+            <img src="4/out/2.5-lego_psnr.png" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">PSNR curve for lego model</p>
+
+            <img src="4/out/3d_lego/lego_iteration_4000.gif" style="width: 80%; display: block; margin: auto;">
+            <p class="caption">Novel spherical rendering</p>
+        </div>
+
+        <div class="text">
+            <h1>Part 2.6: Training With Your Own Data</h1>
+            <p>In this part, I trained a NeRF on my own captured dataset by using the calibrated intrinsics, estimated poses, and undistorted images from Part 0.</p>
+            <p>I struggled to find hyperparameters that worked for my dataset. I initially tried identical hps to the lego dataset and that result is what you see below. I tried adjusting near and far to the recommended values of 0.02 and 0.5, as well as experimenting with other values such as 0.15 to 1.2 but none yielded as good of results. I also experimented with iterations, number of samples/ray, and the learning rate.</p>
+
+            <img src="4/img/0.2/IMG_4544.JPG" style="width: 25%; display: block; margin: auto;">
+            <p class="caption">Original</p>
+
+            <div class="image-row">
+                <img style="width: 19%" src="4/out/3d_camera (OLD)/camera_iteration_0.jpg">
+                <img style="width: 19%" src="4/out/3d_camera (OLD)/camera_iteration_1000.jpg">
+                <img style="width: 19%" src="4/out/3d_camera (OLD)/camera_iteration_2000.jpg">
+                <img style="width: 19%" src="4/out/3d_camera (OLD)/camera_iteration_3000.jpg">
+                <img style="width: 19%" src="4/out/3d_camera (OLD)/camera_iteration_5000.jpg">
+            </div>
+            <p class="caption">Training progression (5,000 iterations)</p>
+
+            <img src="4/out/2.6-camera_psnr.png" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">PSNR curve for choice model</p>
+
+            <img src="4/out/2.6-camera_loss.png" style="width: 50%; display: block; margin: auto;">
+            <p class="caption">Training loss for choice model</p>
+
+            <img src="4/out/3d_camera (OLD)/camera_iteration_5000.gif" style="width: 80%; display: block; margin: auto;">
+            <p class="caption">Novel spherical rendering</p>
+        </div>
+
+        
+
+        
+
+        <div class="text"></div>
+
+    </div>
+
+</body>
+</html>
